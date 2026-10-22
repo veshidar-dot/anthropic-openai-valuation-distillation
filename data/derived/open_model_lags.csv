@@ -1,0 +1,122 @@
+model,org,country,date,eci,lag_m
+LLaMA-65B,Meta AI,United States of America,2023-02-24,109.97,0.0
+LLaMA-33B,Meta AI,United States of America,2023-02-24,107.18,0.0
+LLaMA-13B,Meta AI,United States of America,2023-02-24,100.32,0.0
+LLaMA-7B,Meta AI,United States of America,2023-02-24,96.62,0.0
+Cerebras-GPT-13B,Cerebras Systems,United States of America,2023-03-20,82.66,0.19710906701708278
+Dolly 2.0-12b,Databricks,United States of America,2023-04-11,89.2,0.9198423127463863
+Falcon-7B,Technology Innovation Institute,United Arab Emirates,2023-04-24,94.7,1.3469119579500657
+MPT-7B,MosaicML,United States of America,2023-05-05,94.19,1.7082785808147174
+Falcon-40B,Technology Innovation Institute,United Arab Emirates,2023-05-25,104.17,2.3653088042049935
+Baichuan1-7B,Baichuan,China,2023-06-01,90.0,2.59526938239159
+MPT-30B,MosaicML,United States of America,2023-06-22,100.33,3.2851511169513796
+XGen-7B,Salesforce,United States of America,2023-06-27,92.98,3.4494086727989486
+Llama 2-7B,Meta AI,United States of America,2023-07-18,98.61,4.139290407358739
+Llama 2-70B,Meta AI,United States of America,2023-07-18,113.67,4.139290407358739
+Llama 2-13B,Meta AI,United States of America,2023-07-18,105.58,4.139290407358739
+Stable Beluga 2,Stability AI,United Kingdom,2023-07-20,117.02,4.204993429697766
+Falcon-180B,Technology Innovation Institute,United Arab Emirates,2023-09-06,111.96,5.781865965834428
+Baichuan2-13B,Baichuan,China,2023-09-06,102.9,5.781865965834428
+Phi-1.5,Microsoft,United States of America,2023-09-11,91.06,5.946123521681997
+Baichuan 2-7B,Baichuan,China,2023-09-20,95.94,6.241787122207621
+Qwen-14B,Alibaba,China,2023-09-24,112.88,6.3731931668856765
+Mistral 7B v0.1,Mistral AI,France,2023-09-27,112.05,6.471747700394218
+Qwen-7B,Alibaba,China,2023-09-28,106.59,6.504599211563732
+Yi-34B,01.AI,China,2023-11-02,117.33,7.654402102496714
+DeepSeek Coder 33B,"DeepSeek,Peking University",China,2023-11-02,95.94,7.654402102496714
+DeepSeek Coder 6.7B,"DeepSeek,Peking University",China,2023-11-02,89.13,7.654402102496714
+DeepSeek Coder 1.3B,"DeepSeek,Peking University",China,2023-11-02,62.59,7.654402102496714
+Yi 6B,01.AI,China,2023-11-22,104.5,8.31143232588699
+Mixtral 8x7B,Mistral AI,France,2023-12-11,118.44,8.935611038107753
+Phi-2,Microsoft,United States of America,2023-12-12,107.73,8.968462549277266
+StarCoder 2 7B,"Hugging Face,ServiceNow,Nvidia,BigCode",United States of America,2024-02-20,93.14,11.268068331143231
+StarCoder 2 15B,"Hugging Face,ServiceNow,Nvidia,BigCode",United States of America,2024-02-20,104.74,11.268068331143231
+Gemma 7B,Google DeepMind,United States of America,2024-02-21,111.82,11.300919842312746
+Gemma 2B,Google DeepMind,United States of America,2024-02-21,93.79,11.300919842312746
+StarCoder 2 3B,"Hugging Face,ServiceNow,Nvidia,BigCode",United States of America,2024-02-22,88.26,11.333771353482259
+Mixtral 8x22B,Mistral AI,France,2024-04-17,122.04,13.140604467805518
+Llama 3-70B,Meta AI,United States of America,2024-04-18,123.01,13.173455978975033
+Llama 3-8B,Meta AI,United States of America,2024-04-18,116.39,13.173455978975033
+phi-3-medium 14B,Microsoft,United States of America,2024-04-23,121.19,13.337713534822601
+phi-3-small 7.4B,Microsoft,United States of America,2024-04-23,121.82,13.337713534822601
+phi-3-mini 3.8B,Microsoft,United States of America,2024-04-23,117.28,13.337713534822601
+"DeepSeek-V2 (MoE-236B, May 2024)",DeepSeek,China,2024-05-07,124.8,13.797634691195794
+Falcon 2 11B,Technology Innovation Institute,United Arab Emirates,2024-05-09,109.36,13.863337713534822
+Mistral 7B v0.3,Mistral AI,France,2024-05-27,108.88,14.45466491458607
+Qwen2-72B,Alibaba,China,2024-06-07,125.28,14.816031537450723
+Gemma 2 9B,Google DeepMind,United States of America,2024-06-24,119.81,15.374507227332456
+Gemma 2 27B,Google DeepMind,United States of America,2024-06-24,122.12,15.374507227332456
+Mistral NeMo,Mistral AI,France,2024-07-18,118.65,16.16294349540079
+Llama 3.1-70B,Meta AI,United States of America,2024-07-23,125.93,5.913272010512483
+Llama 3.1-405B,Meta AI,United States of America,2024-07-23,128.77,2.3324572930354797
+Llama 3.1-8B,Meta AI,United States of America,2024-07-23,116.47,16.327201051248355
+Mistral Large 2 (Jul 2024),Mistral AI,France,2024-07-24,127.57,2.3653088042049935
+Command R+,"Cohere,Cohere Labs (formerly Cohere for AI)",Canada,2024-08-30,119.2,17.57555847568988
+Qwen2.5-Coder-32B,Alibaba,China,2024-09-18,119.45,18.199737187910642
+Qwen2.5-Coder (1.5B),Alibaba,China,2024-09-18,102.71,18.199737187910642
+Qwen2.5-Coder (7B),Alibaba,China,2024-09-18,113.01,18.199737187910642
+Qwen2.5-72B,Alibaba,China,2024-09-19,128.97,4.23784494086728
+Qwen2.5-7B,Alibaba,China,2024-09-19,118.54,18.232588699080157
+Llama 3.2 90B,Meta AI,United States of America,2024-09-24,125.52,18.396846254927727
+Mistral Large 2 (Nov 2024),Mistral AI,France,2024-11-18,128.57,6.2089356110381075
+Llama 3.3 70B,Meta AI,United States of America,2024-12-06,127.33,6.800262812089356
+Phi-4,Microsoft Research,United States of America,2024-12-12,130.48,2.9894875164257555
+DeepSeek-V3,DeepSeek,China,2024-12-26,132.3,3.4494086727989486
+DeepSeek-R1,DeepSeek,China,2025-01-20,138.82,1.1169513797634691
+QwQ-32B,Alibaba,China,2025-03-05,137.5,2.562417871222076
+Gemma 3 12B,Google DeepMind,United States of America,2025-03-12,123.54,23.94875164257556
+Gemma 3 27B,Google DeepMind,United States of America,2025-03-12,129.97,8.705650459921156
+Gemma 3 4B,Google DeepMind,United States of America,2025-03-12,115.88,23.94875164257556
+Mistral Small 3.1,Mistral AI,France,2025-03-17,127.53,10.11826544021025
+DeepSeek-V3 (Mar 2025),DeepSeek,China,2025-03-24,135.85,3.1865965834428382
+Llama 4 Scout,Meta AI,United States of America,2025-04-05,129.63,9.494086727989487
+Llama 4 Maverick,Meta AI,United States of America,2025-04-06,132.22,6.767411300919842
+Qwen3-8B,Alibaba,China,2025-04-28,136.06,4.336399474375821
+Qwen3-235B-A22B,Alibaba,China,2025-04-28,139.15,4.336399474375821
+Qwen3-14B,Alibaba,China,2025-04-29,138.15,4.369250985545335
+Qwen3-30B-A3B,Alibaba,China,2025-04-29,136.11,4.369250985545335
+Qwen3-32B,Alibaba,China,2025-04-29,138.42,4.369250985545335
+DeepSeek-R1 (May 2025),DeepSeek,China,2025-05-28,141.13,5.321944809461235
+Magistral Small 1.0,Mistral AI,France,2025-06-10,133.07,8.902759526938238
+Kimi K2 (Jul 2025),Moonshot,China,2025-07-12,139.97,6.800262812089356
+Qwen3-235B-A22B-Thinking (Jul 2025),Alibaba,China,2025-07-25,143.76,3.8107752956636003
+Qwen3-235B-A22B-Instruct (Jul 2025),Alibaba,China,2025-07-25,138.78,7.227332457293035
+Qwen3-30B-A3B-Instruct (Jul 2025),Alibaba,China,2025-07-29,137.27,7.35873850197109
+Qwen3-30B-A3B-Thinking (Jul 2025),Alibaba,China,2025-07-30,139.55,7.391590013140604
+gpt-oss-20b,OpenAI,United States of America,2025-08-05,137.7,7.588699080157687
+gpt-oss-120b,OpenAI,United States of America,2025-08-05,139.79,7.588699080157687
+DeepSeek-V3.1,DeepSeek,China,2025-08-21,139.79,8.114323258869907
+DeepSeek-V3.2-Exp,DeepSeek,China,2025-09-29,144.91,5.45335085413929
+Kimi K2 Thinking,Moonshot,China,2025-11-06,145.82,6.701708278580814
+DeepSeek-V3.2,DeepSeek,China,2025-12-01,146.09,7.522996057818659
+GLM-4.7,Z.ai (Zhipu AI),China,2025-12-22,143.59,8.73850197109067
+Kimi K2.5,Moonshot,China,2026-01-27,148.07,5.683311432325887
+GLM-5,Z.ai (Zhipu AI),China,2026-02-11,145.8,9.888304862023652
+MiniMax-M2.5,MiniMax,China,2026-02-12,146.59,9.921156373193167
+Qwen3.5 397B-A17B,Alibaba,China,2026-02-13,146.8,8.147174770039422
+Qwen3.5-9B,Alibaba,China,2026-02-24,139.32,14.257555847568987
+Qwen3.5-35B-A3B,Alibaba,China,2026-02-24,142.49,10.840998685939553
+MiniMax-M2.7,MiniMax,China,2026-03-18,145.78,11.038107752956636
+Gemma 4 31B IT,Google DeepMind,United States of America,2026-04-02,142.99,12.056504599211562
+Gemma 4 26B A4B,Google DeepMind,United States of America,2026-04-02,141.88,12.056504599211562
+GLM-5.1,Z.ai (Zhipu AI),China,2026-04-07,149.82,7.982917214191852
+Qwen 3.6 35B-A3B,Alibaba,China,2026-04-14,143.73,12.450722733245728
+Kimi K2.6,Moonshot,China,2026-04-20,150.94,5.026281208935611
+Qwen3.6 27B,Alibaba,China,2026-04-22,146.23,12.187910643889618
+DeepSeek-V4-Pro,DeepSeek,China,2026-04-24,149.13,8.541392904073588
+DeepSeek-V4-Flash,DeepSeek,China,2026-04-24,146.11,12.253613666228645
+Mistral Medium 3.5,Mistral AI,France,2026-04-28,141.36,16.327201051248355
+MiniMax-M3,MiniMax,China,2026-06-01,146.87,11.695137976346912
+Nemotron 3 Ultra,Nvidia,United States of America,2026-06-04,145.97,13.600525624178712
+Kimi K2.7 Code,Moonshot,China,2026-06-12,150.11,8.147174770039422
+GLM-5.2,Z.ai (Zhipu AI),China,2026-06-16,151.94,6.898817345597897
+Inkling-Small,Thinking Machines,United States of America,2026-07-15,150.32,9.231274638633376
+Inkling,Thinking Machines,United States of America,2026-07-15,148.41,11.235216819973719
+Kimi K3,Moonshot,China,2026-07-16,157.86,4.369250985545335
+DeepSeek V4 Flash 0731,DeepSeek,China,2026-07-31,154.76,7.621550591327201
+DeepSeek V4 Pro 0813,DeepSeek,China,2026-08-13,155.64,8.04862023653088
+Qwen 3.8 27B,Alibaba,China,2026-08-14,151.69,8.83705650459921
+GLM-5.3,Z.ai (Zhipu AI),China,2026-08-14,155.99,8.081471747700395
+GLM-5.3-Flash,Z.ai (Zhipu AI),China,2026-08-20,153.08,8.278580814717477
+DeepSeek V4.1 Flash,DeepSeek,China,2026-09-09,155.93,8.935611038107753
+Muse Spark Open,Meta AI,United States of America,2026-10-15,155.11,10.11826544021025

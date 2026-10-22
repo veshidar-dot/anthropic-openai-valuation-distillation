@@ -1,0 +1,374 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{threeparttable}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Valuing Anthropic and OpenAI Under Model Distillation: The Lead over Open-Weight Models Implied by AI Lab Valuations, 2024-2026},
+  pdfauthor={Danila Krasnov},
+  pdfsubject={Implied lead of frontier AI labs (Anthropic, OpenAI, xAI, Mistral, Cohere, Zhipu, MiniMax, Moonshot) over open-weight models, backed out of valuations with a DCF model; value of one month of lead; effect of distillation},
+  pdfkeywords={Anthropic valuation, OpenAI valuation, AI IPO, model distillation, knowledge distillation, open-weight models, open-source AI, DeepSeek, Kimi, GLM, MiniMax, Epoch Capabilities Index, LLM API pricing, OpenRouter, discounted cash flow, reverse DCF, competitive advantage period, imitation lag, hedonic prices}
+}
+\usepackage[authoryear,round]{natbib}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=false}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\onehalfspacing
+\urlstyle{same}
+\newcommand{\ECI}{\mathrm{ECI}}
+\makeatletter
+\newcommand{\tabinput}[1]{\@@input #1 }
+\makeatother
+
+\title{\vspace{-3em}\Large Valuing Anthropic and OpenAI Under Model Distillation:\\ The Lead over Open-Weight Models Implied by\\ AI Lab Valuations, 2024--2026}
+\author{Danila Krasnov\thanks{E-mail: \href{mailto:d.krasnov@eu.spb.ru}{d.krasnov@eu.spb.ru}. Working paper, version of 22 October 2026. Comments welcome. Data and code: \url{https://github.com/veshidar-dot/anthropic-openai-valuation-distillation}.}\\[0.3em]
+\normalsize European University at St.~Petersburg}
+\date{\vspace{-1.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{singlespace}
+\begin{abstract}
+\noindent How many months must Anthropic stay ahead of open-weight models such as DeepSeek, Kimi (Moonshot AI), GLM (Zhipu) and MiniMax to justify a \$2 trillion IPO valuation, and how much is each month of lead worth when competitors can distil the frontier models' outputs? Valuation practice has long backed out of stock prices a firm's competitive advantage period, the time over which it is expected to earn excess returns, but that period is normally unobservable. For frontier AI labs it has a measurable counterpart: the lead over the best open-weight model on the Epoch Capabilities Index (ECI), which was about 1 month for Anthropic through 2025 and 7.7 months in October 2026. Regressing OpenRouter API prices on ECI for models released since July 2025 shows that the price premium for capability decays with a time constant of 6.9 months (90\% interval 5.2--11.0); closed weights sell at 2.6 times the price of equally capable open weights, a smaller gap than the tenfold one reported by Demirer, Fradkin, Tadelis and Peng. A discounted cash flow (DCF) model built on this margin curve is inverted for 20 valuation events of Anthropic, OpenAI, xAI, Mistral, Cohere, Zhipu, MiniMax and Moonshot. The main result is a set of iso-value curves of revenue growth against implied lead: valuations do not identify the lead without a growth forecast. With the revenue path reported for Anthropic's IPO (\$190--200 billion in 2028), a \$2 trillion valuation requires a lead of 7--10 months or more when the price elasticity of demand is 0.5, and is out of reach at almost any lead when the elasticity exceeds one, as Demirer et al.\ estimate; OpenAI's \$852 billion round of March 2026 implied its 8-month lead would shrink to 0--5 months. One month of lead is worth 2--13\% of a frontier lab's value, depending mainly on the demand elasticity. Labs without a lead are priced on revenue growth of roughly 200--400\% or on gross margins two to four times those they report. Anthropic's February 2026 countermeasures against distillation did not change the lag of the targeted labs relative to other open-weight developers.
+\end{abstract}
+
+\noindent\textbf{JEL codes:} G12, G32, L86, O33.\\
+\textbf{Keywords:} Anthropic valuation, OpenAI valuation, AI IPO, model distillation, knowledge distillation, open-weight models, open-source AI, frontier AI lab, Epoch Capabilities Index, LLM API pricing, discounted cash flow, reverse DCF, competitive advantage period, imitation lag, hedonic prices, implied parameters.
+\end{singlespace}
+
+\newpage
+
+\section{Introduction}
+
+In February 2026 Anthropic reported that three Chinese laboratories had generated more than 16 million exchanges with its Claude models through about 24,000 fraudulent accounts, in order to train their own models on the outputs \citep{anthropic2026distill}. The practice, knowledge distillation \citep{hinton2015distilling}, compresses the time an imitator needs to reach a capability that the innovator paid to discover. Three months later Anthropic raised capital at a post-money valuation of \$965 billion, and by October its bankers were reported to discuss an initial public offering at about \$2 trillion. The question this paper asks is how those two facts fit together: how long a lead over imitators does a given valuation presume, and what is a month of that lead worth?
+
+The economics of imitation lags is old. \citet{mansfield1981imitation} found that imitators of patented industrial innovations incurred about two thirds of the innovator's cost and time, and \citet{mansfield1985leak} that information about new industrial products typically reached rivals within a year. What is new in frontier AI is that the lag can be measured monthly and almost in real time, because model capabilities are benchmarked publicly and prices are posted. That makes it possible to compare what prices imply about the lag with the lag itself.
+
+Backing a period of competitive advantage out of a stock price is standard in valuation practice. \citet{mauboussin1997cap} define the competitive advantage period as the time over which a firm is expected to earn returns above its cost of capital and show how to infer it from the market price with a discounted cash flow model run in reverse; \citet{rappaport2001expectations} build an investment method on such market-implied expectations. The period is, however, a construct: outside the model there is nothing to compare it with. In frontier AI there is. This paper's contribution is to connect the market-implied advantage period of AI developers with a measured counterpart, and it proceeds in three steps. First, it measures the lead of each closed developer over the best open-weight model, using the Epoch Capabilities Index \citep{epoch2026benchmarks}. Anthropic's lead averaged about one month through 2025 and has been 4--8 months since March 2026. A difference-in-differences comparison finds no differential change in the lag of the three laboratories named in the distillation report after it was published.
+
+Second, it prices the lead. A hedonic regression in the spirit of \citet{rosen1974hedonic} of API prices on capability gives the rate at which willingness to pay rises with capability, and converting capability into months of frontier progress gives the time constant $\lambda$ of the lead premium. Combined with the price gap between closed and open weights at equal capability, this pins down a gross margin curve $GM(L)$ in the lead $L$ with one free scale parameter. The closed-weight premium I find, a factor of 2.6, is smaller than the tenfold one that \citet{demirer2025market} report from usage data on the same platform; Section~\ref{sec:price} shows that this difference does not affect the valuation results, because only the slope of price in capability enters them.
+
+Third, it inverts a discounted cash flow model built on that curve. This is the reverse valuation of \citet{mauboussin1997cap}; in academic finance the closest precedent is \citet{pastor2006nasdaq}, who back out the uncertainty about future profitability that rationalises Nasdaq prices in 1999--2000. Here the object is the lead. The inversion turns out to be informative mainly through its failure to be unique: the same price is consistent with a long lead and moderate growth or with no lead and very high growth. I therefore report, for each valuation event, the full iso-value curve in the plane of first-year revenue growth $g_0$ and lead $L$, and mark on it the observed lead and, where one exists, an independent growth forecast.
+
+The headline numbers are as follows. A month of lead is worth 10--13\% of the value of a frontier developer if the price elasticity of demand for its tokens is 0.5, and 2--5\% if it is slightly above one, as \citet{demirer2025market} estimate. Anthropic's \$965 billion round in May 2026 required, at its then observed lead of 5.6 months, first-year revenue growth of 93\%. A \$2 trillion valuation in October 2026, combined with the revenue path its bankers were reported to use, requires with inelastic demand that the lead widen from 7.7 to 8--10 months, unless the discount rate is 10\% and the long-run gross margin 85\%, in which case 6.9 months suffices; with elastic demand it is out of reach at almost any lead, so that the price presumes growth beyond the reported revenue path. OpenAI's \$852 billion round in March 2026, anchored on the company's own 2030 revenue plan, implied that its 8-month lead would shrink to between 0 and 5 months. Developers with no lead over open-weight models, whether closed (xAI, Mistral, Cohere) or themselves open (Zhipu, MiniMax, Moonshot), are priced as if revenue would grow roughly 200--400\% in the first year, or as if gross margins would rise to 45--80\% from the 18--26\% that the two listed Chinese laboratories report.
+
+The paper also relates to work on valuing young firms whose value lies mostly in growth options. \citet{schwartz2000internet} value an internet company by simulating revenue growth and margins that converge to industry levels; \citet{berk2004valuation} model a venture whose value depends on a sequence of research stages; \citet{damodaran2009young} discusses the practical estimation problems. \citet{pastor2009revolutions} explain the rise and fall of stock prices during technological revolutions by learning about the productivity of a new technology, and \citet{kogan2017innovation} measure the private value of innovations from market reactions to patent grants. The present paper is narrower: it isolates one determinant of the cash flows of an innovator, the time before imitators catch up, and asks what prices say about it.
+
+A small literature uses asset prices to study expectations about AI. \citet{andrews2026markets} find that long-term Treasury and inflation-protected yields fall around major releases of frontier models and stay lower for weeks, and \citet{bjorkegren2025open} that yields move in opposite directions around releases of open-weight and closed models. Those papers read beliefs about the macroeconomy from bond markets; this one reads beliefs about one source of the developers' own rents from their equity valuations. On the product side, \citet{demirer2025market,demirer2026jep} document the market for model inference with OpenRouter and Azure data: rapid entry of open-weight models, falling prices, open models about 90\% cheaper than closed models of the same intelligence, and short-run price elasticities slightly above one. Their facts are the demand side that this paper's margin curve abstracts from, and I use their elasticity as an alternative calibration.
+
+Section~\ref{sec:data} describes the data, Section~\ref{sec:lead} measures the lead, Section~\ref{sec:price} prices it, Section~\ref{sec:model} sets out the valuation model, Section~\ref{sec:results} presents the iso-value curves, and Section~\ref{sec:limits} discusses limitations.
+
+\section{Data}\label{sec:data}
+
+Capabilities come from the Epoch AI benchmarking hub \citep{epoch2026benchmarks}, downloaded on 22 October 2026. The Epoch Capabilities Index (ECI) aggregates many benchmarks into one score per model using an item-response model; the file covers 270 models released between February 2023 and October 2026, of which 125 have closed weights and 121 open weights. I use the score, the release date, the developer and whether the weights are open. The data are licensed CC BY 4.0.
+
+Prices come from the public model list of OpenRouter, an API aggregator, retrieved on the same day \citep{openrouter2026}. For each model it gives prices per input and per output token. I use a blended price of 0.75 times the input price plus 0.25 times the output price, in US dollars per million tokens, and drop free endpoints. Exact name matching links 107 ECI models to a price; 89 of them, released since July 2025, form the regression sample. Open-weight models are typically served by many competing hosts, so their price is close to the marginal cost of serving them; closed models are priced by their developer.
+
+Valuations and fundamentals cover 20 events for eight developers between October 2024 and October 2026: funding rounds for Anthropic, OpenAI, Mistral, Cohere and Moonshot; xAI's acquisition by SpaceX; the Hong Kong listings and October 2026 market capitalisations of Zhipu and MiniMax; and the \$2 trillion figure reported for Anthropic's offering. For each event I record the post-money valuation or market value, the annualised revenue run-rate nearest in time, reported gross margin where available, and a confidence grade. Primary sources (company announcements, exchange filings, SEC filings) are used where they exist; otherwise Bloomberg, Reuters, the Financial Times, the Wall Street Journal or CNBC. Run-rates between published points are interpolated and flagged. Appendix Table~\ref{tab:sources} lists sources. Two data caveats matter for what follows: Anthropic's gross margin has not been disclosed in a way that fixes its definition, with reported figures ranging from about 38\% to 85\%; and xAI's revenue is a segment of SpaceX that also contains advertising on X and rental of computing capacity.
+
+\section{Measuring the lead}\label{sec:lead}
+
+Let $F_t$ be the closed frontier, the highest ECI among closed-weight models released by date $t$, and $O_t$ the same for open-weight models. Over July 2025--October 2026 the closed frontier advanced at $v = 1.43$ ECI points a month (1.35 since January 2024), so a capability gap can be expressed in months of frontier progress. The lead of developer $j$ at date $t$ is
+\begin{equation}
+L_{jt} = \frac{\max_{m \in j,\, d_m \le t} \ECI_m - O_t}{v},
+\label{eq:lead}
+\end{equation}
+the time the open-weight frontier would need, at the closed frontier's pace, to reach developer $j$'s best model. A negative value means the best open-weight model is more capable than anything $j$ has released.
+
+Figure~\ref{fig:leads} plots $L_{jt}$ for Anthropic and OpenAI together with the horizontal gap between the two frontiers, the number of months between the date at which the closed frontier first reached the open-weight frontier's current level and today. The horizontal gap fell from about 11 months in early 2024 to 2.5 months in the first quarter of 2025, when DeepSeek-R1 was released, and has since widened to 6--7 months. Epoch's own estimate for 2026, about four months \citep{epoch2026gap}, uses a different construction; I use the measure in~\eqref{eq:lead} throughout because it is consistent with the conversion of ECI into months used in Section~\ref{sec:price}. Anthropic's lead averaged 2.7 months between January 2025 and October 2026, with a median of 1.5, and was 7.7 months in October 2026; OpenAI's averaged 5.0.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_leads.pdf}
+\caption{Lead of Anthropic and OpenAI over the best open-weight model, equation~\eqref{eq:lead}, and the horizontal gap between the closed and open-weight frontiers, monthly. Source: Epoch Capabilities Index, author's calculations.}
+\label{fig:leads}
+\end{figure}
+
+The distillation report of 23 February 2026 named DeepSeek, Moonshot and MiniMax and described countermeasures. If those measures slowed the named laboratories, their models released afterwards should lag the closed frontier by more, relative to other open-weight models. Table~\ref{tab:did} compares the lag of each open-weight model, the months between its release and the date the closed frontier first reached its ECI, before and after March 2026. Both groups' lags rose by about two months, and the difference-in-differences is $+0.1$ months with a standard error of 1.7. With 19 models from the named laboratories the test has little power, but there is no sign that the countermeasures widened the gap for their targets specifically.
+
+\begin{table}[t]
+\centering
+\begin{threeparttable}
+\caption{Lag of open-weight models behind the closed frontier, months}
+\label{tab:did}
+\small
+\begin{tabular}{lccc}
+\toprule
+ & Mar 2025--Feb 2026 & Mar 2026--Oct 2026 & Change \\
+\midrule
+\tabinput{tables/did.tex}
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Mean lag, number of models in parentheses. The lag of a model is the time between its release and the date at which the closed frontier first reached its ECI. The last row is the interaction coefficient from an OLS regression of the lag on group, period and their product, with heteroskedasticity-robust standard error.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\section{Pricing the lead}\label{sec:price}
+
+\subsection{Hedonic regression}
+
+I estimate
+\begin{equation}
+\log p_m = a + b\,\ECI_m + \gamma\,\mathrm{open}_m + \varepsilon_m
+\label{eq:hedonic}
+\end{equation}
+on the 89 models released since July 2025, where $p_m$ is the blended price. The coefficient $b$ is the proportional price increase per ECI point and $\gamma$ the log price difference between open and closed weights at equal capability. Table~\ref{tab:hedonic} reports four specifications and Figure~\ref{fig:hedonic} the data.
+
+\begin{table}[t]
+\centering
+\begin{threeparttable}
+\caption{Hedonic regressions of API price on capability}
+\label{tab:hedonic}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Specification & $b$ & $\gamma$ & $e^{\gamma}$ & $\lambda$, months & $N$ & $R^2$ \\
+\midrule
+\tabinput{tables/hedonic.tex}
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Dependent variable: log blended price per million tokens, OpenRouter, 22 October 2026. Models released since July 2025. Heteroskedasticity-robust standard errors in parentheses. $\lambda = 1/(b v)$ with $v = 1.43$ ECI points per month. Vintage control: release date in years. A bootstrap of the baseline (2,000 draws) gives $\lambda$ = 6.9 [5.2; 11.0] and $e^{\gamma}$ = 0.38 [0.22; 0.61], 90\% intervals. Adding $\ECI \times \mathrm{open}$ gives an interaction of $-0.013$ (0.048).
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+In the baseline, a one-point increase in ECI raises price by about 10\%, and an open-weight model costs 0.37 times as much as a closed model of equal capability. The slopes for open and closed models are statistically indistinguishable, so the two price schedules are parallel in logs. Since the closed frontier advances $v$ points a month, a lead of $L$ months carries a price premium $e^{bvL} = e^{L/\lambda}$ with $\lambda = 1/(bv) = 6.9$ months. Controlling for release date raises $b$ and lowers $\lambda$ to 3.6 months, because newer models are cheaper at given capability; developer fixed effects give 7.7 months. I use the baseline and report the effect of $\lambda$ through the bootstrap interval.
+
+The closed-weight premium can be compared with \citet{demirer2025market,demirer2026jep}, who report that open-source models cost about 90\% less than closed models of the same intelligence, a price ratio of about ten, against 2.6 here (bootstrap interval 1.6--4.5). The two measurements differ: they compare models within intelligence tiers in usage data from 2024--2025, while this paper uses list prices from a single October 2026 cross-section and a continuous capability index. For the valuation results the size of the premium does not matter. In the margin curve derived below only the product of the premium and a calibrated cost parameter enters, so replacing $e^{\gamma} = 0.38$ by 0.10 leaves every implied lead and value in Section~\ref{sec:results} unchanged. What matters is the slope $b$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig2_hedonic.pdf}
+\caption{Blended API price and capability, models released since July 2025, with baseline fit of equation~\eqref{eq:hedonic}. Sources: Epoch AI, OpenRouter.}
+\label{fig:hedonic}
+\end{figure}
+
+Two caveats apply. Prices are per token, not per task, and reasoning models use more tokens per task. And list prices of older closed models are seldom revised, which tends to flatten the estimated slope; the vintage-controlled specification addresses this and gives a shorter $\lambda$.
+
+\subsection{From prices to a margin curve}
+
+Suppose the frontier developer sells at a price equal to that of the best open-weight model, $p_O$, times the closed-weight premium $e^{-\gamma}$ and the lead premium $e^{L/\lambda}$, and that its serving cost is a multiple $\kappa$ of $p_O$, which is close to the open model's marginal cost. Then
+\begin{equation}
+GM(L) = 1 - \kappa\, e^{\gamma}\, e^{-L/\lambda}, \qquad \frac{dGM}{dL} = \frac{1 - GM}{\lambda}.
+\label{eq:gm}
+\end{equation}
+The scale $\kappa$ cannot be estimated from prices. I calibrate it so that a closed developer with a six-month lead earns a long-run gross margin of 75\%, close to the 77\% that Anthropic was reported to target for 2028 \citep{techcrunch2025anthropic}; this gives $\kappa = 1.57$. The same curve is used for every closed developer, which places them on it according to their observed lead. It implies a gross margin of 40\% with no lead, 67\% with four months and 80\% with Anthropic's October 2026 lead of 7.7 months; at 75\% a month of lead is worth 3.6 percentage points of margin. For open-weight developers I set $e^{\gamma} = 1$, so that without a lead their margin is negative and they are valued as hosts of commodity models (below).
+
+\section{Valuation model}\label{sec:model}
+
+The model is a ten-year discounted cash flow with a Gordon terminal value; all parameters except revenue, cash and the lead are common to all firms. First-year revenue growth $g_0$ decays exponentially to 3\% with a time constant of 2.5 years, $g_i = 0.03 + (g_0 - 0.03)e^{-i/2.5}$. The gross margin moves from the reported level to $GM(L)$ over three years. Research and development spending falls from 45\% of revenue to 22\% with a time constant of 2.5 years; selling, general and administrative costs are 12\%; the tax rate is 21\%. Reinvestment in data centres and working capital is 25\% of the increase in revenue, and the terminal value assumes a return on new capital of 25\%. The discount rate is 12\%, with 10\% and 14\% as alternatives.
+
+The lead affects value through margin and through revenue: a higher margin at given serving cost is a higher price, and I let demand respond with a price elasticity $\varepsilon = 0.5$, so that revenue scales with $\bigl((1-GM(L_0))/(1-GM(L))\bigr)^{1-\varepsilon}$ relative to revenue at the observed lead $L_0$. \citet{demirer2025market} estimate short-run price elasticities for individual models slightly above one; with such elastic demand a higher margin brings almost no extra revenue, so I report results with an elasticity of 1.1 as well. A developer whose lead is too short to cover the cost of staying at the frontier can stop: it then becomes a host of its own models, with a gross margin of 25\% (the level of competitive open-weight hosts), research spending of 6\% of revenue and a 20\% loss of revenue. The model takes the better of the two strategies, and equity value cannot fall below cash.
+
+For a valuation event with price $V$ the implied lead solves $\mathrm{DCF}(L; g_0) = V$. Holding the other parameters fixed, this defines a curve in the $(g_0, L)$ plane along which the price is justified. Two points on it are of particular interest: the growth rate that justifies the price if the lead stays at its observed value, and the lead that justifies the price if growth equals an independent forecast.
+
+\section{Results}\label{sec:results}
+
+\subsection{Iso-value curves}
+
+Figure~\ref{fig:iso} shows the iso-value curves for four Anthropic and three OpenAI events. Each curve is steep and convex: between first-year growth of 100\% and 200\% the implied lead falls by a factor of three to five, and above 250\% it is close to zero. Below 75--100\% growth most prices cannot be justified at any lead, because the margin curve saturates at 85\%. Within the plausible range of growth, then, a valuation does not determine the lead it presumes; it determines the trade-off.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_iso.pdf}
+\caption{Iso-value curves: combinations of first-year revenue growth and lead over the best open-weight model at which the discounted cash flow equals the valuation. Dots mark the observed lead at the event date. Vertical lines mark growth implied by independent revenue forecasts: for Anthropic, \$190--200 billion in 2028 from a run-rate of \$67 billion; for OpenAI, more than \$280 billion in 2030 from \$24 billion. Discount rate 12\%, long-run margin 75\% at a six-month lead, price elasticity of demand 0.5.}
+\label{fig:iso}
+\end{figure}
+
+The curves for Anthropic's three funding rounds lie close together despite a fivefold increase in valuation between September 2025 and May 2026, because revenue grew faster than price: the ratio of valuation to run-rate fell from 37 to 21. The October 2026 figure of \$2 trillion lies to the right of the May curve, so for a given lead it requires faster growth. The dots, which mark the observed lead, move up the curves over time as Anthropic's lead widened.
+
+\subsection{Required growth at the observed lead}
+
+Table~\ref{tab:events} reports, for every event, the first-year growth that justifies the price if the lead stays at its observed value. For the frontier developers in 2026 it lies between 93\% and 111\%; for Anthropic in 2025, when its lead was about one month, between 200\% and 290\%. Ex post, growth was much faster than that: Anthropic's run-rate rose about tenfold in the eleven months after March 2025 and about thirteenfold in the ten months after September 2025, and OpenAI's about 3.6-fold and fourfold in the twelve months after October 2024 and March 2025. Each of the four rounds for which a year of subsequent data exists was cheap in hindsight, although this is the comparison that survivorship would produce.
+
+For developers without a lead the required growth is roughly 200--400\%. xAI, Mistral and Cohere are closed-weight developers whose best models are behind the open-weight frontier; Zhipu, MiniMax and Moonshot release open weights. In the model all of them earn either the margin of a closed developer with no lead or that of a commodity host, and their prices can be reached only through very fast growth.
+
+\begin{table}[p]
+\centering
+\begin{threeparttable}
+\caption{Valuation events, observed lead and required growth}
+\label{tab:events}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lllrrrrrl}
+\toprule
+Firm & Date & Event & Value, \$bn & Run-rate, \$bn & Multiple & $L$, months & $g_0$, \% & Conf. \\
+\midrule
+\tabinput{tables/events.tex}
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Value: post-money valuation, or market value for listed firms and SpaceX's acquisition price for xAI; the October 2026 Anthropic figure is a reported offering valuation, not a transaction. Run-rate: annualised revenue nearest the event; some are interpolated (Appendix Table~\ref{tab:sources}). $L$: lead over the best open-weight model by equation~\eqref{eq:lead}; n/a where the developer has no ECI-scored model before the event. $g_0$: first-year revenue growth at which the discounted cash flow equals the value if the lead stays at $L$; discount rate 12\%.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsection{Anchoring on revenue forecasts}
+
+Two events have an independent growth forecast. For Anthropic's offering, the revenue path of \$190--200 billion in 2028 that bankers were reported to use corresponds to $g_0 = 85\%$. For OpenAI's March 2026 round, the company's plan of more than \$280 billion in 2030 corresponds to $g_0 = 144\%$. Table~\ref{tab:anchored} reports the value at the observed lead, the implied lead and the value of one month of lead under four combinations of discount rate and long-run margin and two demand elasticities.
+
+\begin{table}[t]
+\centering
+\begin{threeparttable}
+\caption{Implied lead with growth anchored on revenue forecasts}
+\label{tab:anchored}
+\small
+\begin{tabular}{cccccccc}
+\toprule
+ & & \multicolumn{3}{c}{Anthropic, \$2,000bn, Oct 2026} & \multicolumn{3}{c}{OpenAI, \$852bn, Mar 2026} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}
+Discount & $GM$ at & DCF at & Implied & Month of & DCF at & Implied & Month of \\
+rate & 6 months & $L$, \$tn & $L$ & lead, \% & $L$, \$tn & $L$ & lead, \% \\
+\midrule
+\tabinput{tables/anchored.tex}
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Observed lead: Anthropic 7.7 months, OpenAI 8.0. ``Month of lead'': change in value from one more month of lead, central difference, as a share of value at the observed lead. With a long-run margin of 85\% the margin cap is raised from 85\% to 92\%. ``Unattainable'': the price exceeds the value at any lead; 0.0: the price is justified even without a lead. Upper panel: price elasticity of demand 0.5 (baseline); lower panel: 1.1, following \citet{demirer2025market}.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Consider first the upper panel. With a 12\% discount rate and the baseline margin, Anthropic is worth \$1.36 trillion if its lead stays at 7.7 months, and \$2 trillion cannot be reached at any lead. With a 10\% discount rate it requires a lead of 8.3 months; with an 85\% long-run margin, 9.9 months; with both, 6.9 months. In all but the most favourable case the offering price presumes that Anthropic's lead will widen further. If instead the lead returns to its January 2025--October 2026 median of 1.5 months, the same model gives \$331 billion, and averaging over the monthly leads observed in that period gives \$560 billion (at 10\%: \$444 billion and \$749 billion).
+
+OpenAI's March 2026 price was below the value at its observed lead of 8.0 months in every combination, \$1.43--2.25 trillion, and implied a lead of 0.7--4.6 months in the upper panel and 0--2.9 months in the lower. The round, in other words, priced in substantial erosion of the lead; Figure~\ref{fig:leads} shows that OpenAI's lead did fall to 3.5 months by August before recovering.
+
+In the upper panel a month of lead is worth 13\% of value with the baseline margin and 10\% with the higher one. Because the elasticity of margin with respect to the lead is $(1-GM)/\lambda$, it is smaller when the margin is already close to its ceiling.
+
+The lower panel of Table~\ref{tab:anchored} uses the price elasticity of 1.1 suggested by \citet{demirer2025market}. Demand that elastic turns a higher price into almost no extra revenue, so the lead matters much less: a month is worth 2--5\% of value. Anthropic's \$2 trillion then cannot be reached on the bankers' growth path at any lead, except with a 10\% discount rate and an 85\% margin (5.0 months), and OpenAI's March 2026 price is justified with a lead of 0--3 months. The conclusion that the offering price presumes either a widening lead or growth beyond the reported revenue path therefore holds under both elasticities, but which of the two it presumes depends on the elasticity: a widening lead if demand is inelastic, faster growth if it is elastic.
+
+\subsection{Developers without a lead}
+
+For the developers that have no lead, Figure~\ref{fig:gm} reports the alternative inversion: the constant long-run gross margin that justifies the price, as a function of first-year growth, ignoring the lead. Zhipu's October 2026 market value requires a margin of 69\% at 100\% growth and 45\% at 200\%; MiniMax's, 78\% and 47\%. They reported 26\% and 18\% for the first half of 2026. Below roughly 40\% no positive valuation is possible under the common cost structure, so the curves flatten there. Moonshot and Mistral, whose valuations are higher relative to revenue, require more. These prices therefore embed either a change in the cost structure, a margin these firms have not yet earned, or a value that a cash flow model does not capture, such as strategic or national-security considerations.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig4_gm.pdf}
+\caption{Constant long-run gross margin at which the discounted cash flow equals the valuation, developers without a lead. Arrows: reported gross margin, first half of 2026 (Zhipu 26\%, MiniMax 18\%). Discount rate 12\%.}
+\label{fig:gm}
+\end{figure}
+
+\section{Limitations}\label{sec:limits}
+
+The margin curve rests on prices of tokens and on an assumption about serving cost. The time constant $\lambda$ is estimated from a single cross-section of list prices and changes by a factor of two across specifications. The scale $\kappa$ is calibrated, not estimated, and Anthropic's reported gross margin is not defined consistently across sources. The value of a month of lead depends heavily on the price elasticity of demand, which is not estimated here: between the baseline of 0.5 and the 1.1 of \citet{demirer2025market} it falls from 10--13\% to 2--5\% of value.
+
+The valuation model is deliberately simple and common to all firms. Firm-specific growth paths, revenue concentration (about 20\% of Anthropic's first-half 2026 revenue reportedly came from two customers), compute commitments of more than \$600 billion and dilution from convertible instruments are not modelled. The implied lead absorbs every such omission, in the same way that implied volatility absorbs every departure from the Black--Scholes assumptions; its level should be read accordingly, and the iso-value curves, which display the dependence on growth explicitly, are the more robust object.
+
+Several valuation inputs come from press reports rather than filings, and two are interpolated run-rates. The private-round valuations are post-money prices of preferred stock with protective terms, which overstate the value of common equity. And the sample of events with independent growth forecasts has two members. Anthropic's public registration statement, if it is filed in November 2026 as reported, and subsequent analyst forecasts should add both reliable fundamentals and more anchors.
+
+\section{Conclusion}
+
+Frontier AI valuations are bets on the duration of a lead over imitators. Valuation practice calls that duration the competitive advantage period and infers it from prices; in frontier AI it can also be measured, almost monthly. Combining capability indices with API prices gives a premium for capability that decays with a time constant of about seven months, and a discounted cash flow model built on it shows that each month of lead is worth between 2\% and 13\% of a frontier developer's value, depending mainly on how elastic demand for its tokens is. Read backwards, the valuations of 2025--2026 do not identify the lead they presume without a view on growth, but with the growth forecasts that are available they imply that Anthropic's prospective offering assumes either a widening lead or growth beyond its reported revenue path, and that OpenAI's last private round assumed its lead would narrow. Developers without a lead are priced on growth or margins far beyond what they report. Whether distillation shortens leads is an empirical question that the data do not yet answer: the laboratories that Anthropic accused of distillation fell behind no faster and no slower than other open-weight developers after its countermeasures.
+
+\section*{Declarations}
+\noindent\textit{Use of AI tools.} Data collection, code and drafting were assisted by Claude, a large language model developed by Anthropic, one of the firms studied. The author reviewed all results and is responsible for the content.
+
+\noindent\textit{Conflicts of interest.} The author has no financial or professional relationship with any of the firms studied.
+
+\noindent\textit{Data availability.} Epoch AI data are available under CC BY 4.0; OpenRouter prices from its public API. Code, the valuation panel, the Epoch snapshot used and derived data are available at \url{https://github.com/veshidar-dot/anthropic-openai-valuation-distillation}.
+
+\begin{thebibliography}{99}
+\setlength{\itemsep}{2pt}
+\small
+
+\bibitem[Andrews and Farboodi(2026)]{andrews2026markets}
+Andrews, I., and Farboodi, M. (2026). Do markets believe in transformative AI? Working paper, Massachusetts Institute of Technology, version of July 2026. \url{https://economics.mit.edu/}.
+
+\bibitem[Anthropic(2026)]{anthropic2026distill}
+Anthropic (2026). Detecting and preventing distillation attacks. Company announcement, 23 February 2026. \url{https://www.anthropic.com/news}.
+
+\bibitem[Berk et~al.(2004)Berk, Green, and Naik]{berk2004valuation}
+Berk, J.~B., Green, R.~C., and Naik, V. (2004). Valuation and return dynamics of new ventures. \textit{Review of Financial Studies}, 17(1), 1--35.
+
+\bibitem[Bj\"orkegren(2025)]{bjorkegren2025open}
+Bj\"orkegren, D. (2025). Market beliefs about open vs.\ closed AI. arXiv:2512.14969 [econ.GN], version 3, 26 January 2026.
+
+\bibitem[Damodaran(2009)]{damodaran2009young}
+Damodaran, A. (2009). Valuing young, start-up and growth companies: estimation issues and valuation challenges. Working paper, Stern School of Business, New York University. SSRN 1418687.
+
+\bibitem[Demirer et~al.(2025)Demirer, Fradkin, Tadelis, and Peng]{demirer2025market}
+Demirer, M., Fradkin, A., Tadelis, N., and Peng, S. (2025). The emerging market for intelligence: pricing, supply, and demand for LLMs. NBER Working Paper 34608, December 2025.
+
+\bibitem[Demirer et~al.(2026)Demirer, Fradkin, and Tadelis]{demirer2026jep}
+Demirer, M., Fradkin, A., and Tadelis, N. (2026). The emerging market for intelligence: how firms buy and sell AI. \textit{Journal of Economic Perspectives}, 40(3), 23--46.
+
+\bibitem[Epoch AI(2026a)]{epoch2026benchmarks}
+Epoch AI (2026a). Capabilities and benchmarking. Data hub, retrieved 22 October 2026. \url{https://epoch.ai/benchmarks}.
+
+\bibitem[Epoch AI(2026b)]{epoch2026gap}
+Epoch AI (2026b). Data insight on the capability gap between open-weight and closed models, 29 May 2026. \url{https://epoch.ai/data-insights/open-closed-eci-gap}.
+
+\bibitem[Hinton et~al.(2015)Hinton, Vinyals, and Dean]{hinton2015distilling}
+Hinton, G., Vinyals, O., and Dean, J. (2015). Distilling the knowledge in a neural network. arXiv:1503.02531.
+
+\bibitem[Kogan et~al.(2017)Kogan, Papanikolaou, Seru, and Stoffman]{kogan2017innovation}
+Kogan, L., Papanikolaou, D., Seru, A., and Stoffman, N. (2017). Technological innovation, resource allocation, and growth. \textit{Quarterly Journal of Economics}, 132(2), 665--712.
+
+\bibitem[Mansfield(1985)]{mansfield1985leak}
+Mansfield, E. (1985). How rapidly does new industrial technology leak out? \textit{Journal of Industrial Economics}, 34(2), 217--223.
+
+\bibitem[Mansfield et~al.(1981)Mansfield, Schwartz, and Wagner]{mansfield1981imitation}
+Mansfield, E., Schwartz, M., and Wagner, S. (1981). Imitation costs and patents: an empirical study. \textit{Economic Journal}, 91(364), 907--918.
+
+\bibitem[Mauboussin and Johnson(1997)]{mauboussin1997cap}
+Mauboussin, M., and Johnson, P. (1997). Competitive advantage period: the neglected value driver. \textit{Financial Management}, 26(2), Summer 1997.
+
+\bibitem[OpenRouter(2026)]{openrouter2026}
+OpenRouter (2026). Models API, \texttt{GET /api/v1/models}. Retrieved 22 October 2026. \url{https://openrouter.ai/api/v1/models}.
+
+\bibitem[P\'astor and Veronesi(2006)]{pastor2006nasdaq}
+P\'astor, \v{L}., and Veronesi, P. (2006). Was there a Nasdaq bubble in the late 1990s? \textit{Journal of Financial Economics}, 81(1), 61--100.
+
+\bibitem[P\'astor and Veronesi(2009)]{pastor2009revolutions}
+P\'astor, \v{L}., and Veronesi, P. (2009). Technological revolutions and stock prices. \textit{American Economic Review}, 99(4), 1451--1483.
+
+\bibitem[Rappaport and Mauboussin(2001)]{rappaport2001expectations}
+Rappaport, A., and Mauboussin, M.~J. (2001). \textit{Expectations Investing: Reading Stock Prices for Better Returns}. Boston: Harvard Business School Press.
+
+\bibitem[Rosen(1974)]{rosen1974hedonic}
+Rosen, S. (1974). Hedonic prices and implicit markets: product differentiation in pure competition. \textit{Journal of Political Economy}, 82(1), 34--55.
+
+\bibitem[Schwartz and Moon(2000)]{schwartz2000internet}
+Schwartz, E.~S., and Moon, M. (2000). Rational pricing of internet companies. \textit{Financial Analysts Journal}, 56(3), 62--75.
+
+\bibitem[TechCrunch(2025)]{techcrunch2025anthropic}
+TechCrunch (2025). Anthropic expects B2B demand to boost revenue to \$70B in 2028: report. 4 November 2025. \url{https://techcrunch.com/2025/11/04/anthropic-expects-b2b-demand-to-boost-revenue-to-70b-in-2028-report/}.
+
+\end{thebibliography}
+
+\appendix
+\section{Sources of the valuation panel}
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{lll>{\raggedright\arraybackslash}p{0.56\textwidth}}
+\caption{Sources for Table~\ref{tab:events}}\label{tab:sources}\\
+\toprule
+Firm & Date & Event & Source and notes \\
+\midrule
+\endfirsthead
+\toprule
+Firm & Date & Event & Source and notes \\
+\midrule
+\endhead
+\tabinput{tables/sources.tex}
+\bottomrule
+\end{longtable}
+\endgroup
+
+\end{document}

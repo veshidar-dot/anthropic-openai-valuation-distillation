@@ -1,0 +1,21 @@
+firm,eci_org,date,event,value_usd_b,raised_usd_b,rr_usd_b,gm_now,cash_usd_b,conf,source
+Anthropic,Anthropic,2025-03-03,Series E,61.5,3.5,1.4,0.40,3.5,high,anthropic.com/news/anthropic-raises-series-e-at-usd61-5b-post-money-valuation (RR ~1 Jan 2025; Mar interpolated)
+Anthropic,Anthropic,2025-09-02,Series F,183,13,5,0.45,13,high,anthropic.com/news/anthropic-raises-series-f-at-usd183b-post-money-valuation
+Anthropic,Anthropic,2026-02-12,Series G,380,30,14,0.50,30,high,anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation
+Anthropic,Anthropic,2026-05-28,Series H,965,65,47,0.50,80,high,anthropic.com/news/series-h
+Anthropic,Anthropic,2026-10-15,IPO talk,2000,0,67,0.60,70,low,Bloomberg 2026-10-15 (Q3 rec 16.8 x4); IPO valuation reported not priced
+OpenAI,OpenAI,2024-10-02,primary round,157,6.6,4.5,0.40,6.6,high,openai.com/index/scale-the-benefits-of-ai (2024 rec ~3.7)
+OpenAI,OpenAI,2025-03-31,SoftBank round,300,40,6,0.40,40,high,openai.com/index/march-funding-updates (RR assumed)
+OpenAI,OpenAI,2025-10-15,secondary,500,0,16,0.40,40,med,Reuters/Bloomberg (2025 rec 13.1; RR assumed)
+OpenAI,OpenAI,2026-03-31,round,852,122,24,0.45,122,high,cnbc.com/2026/03/31/openai-funding-round-ipo.html (~2B/month)
+xAI,xAI,2026-02-02,acquired by SpaceX,250,0,3.3,0.44,0,high,cnbc.com/2026/02/03/musk-xai-spacex-biggest-merger-ever.html; S-1 AI segment Q1 0.818 x4
+Mistral,Mistral AI,2025-09-09,Series C,13.7,2.0,0.25,0.45,2.0,high,Orrick/Mistral (EUR 11.7B; RR assumed)
+Mistral,Mistral AI,2026-09-08,Series D,24.5,3.5,0.8,0.45,3.5,high,euronews.com/2026/09/08/mistral-ai-raises-record-3-billion-in-samsung-led-funding-round (RR interpolated: >0.4 Feb; ~1 target YE)
+Cohere,,2025-09-15,second close,7.0,0.1,0.24,0.70,0.6,med,theglobeandmail.com 2026-02-13 (ARR 2025 0.24; GM ~70%)
+Zhipu,Z.ai (Zhipu AI),2026-01-08,HK IPO,6.6,0.56,0.6,0.41,0.8,high,SCMP/Yicai (HK$51.2B); FY2025 rec RMB 724M
+Zhipu,Z.ai (Zhipu AI),2026-10-16,market cap,32.9,0,1.6,0.26,4.5,med,stock.10jqka.com.cn/20261016 (HK$255.7B); H1 2026 interim ARR ~1.6
+MiniMax,MiniMax,2026-01-09,HK IPO,6.5,0.71,0.12,0.25,1.2,high,Reuters/SCMP; FY2025 rec 79M
+MiniMax,MiniMax,2026-10-16,market cap,8.4,0,0.3,0.18,1.32,med,stock.10jqka.com.cn/20261016 (HK$65.2B); H1 2026 rec 116.6M
+Moonshot,Moonshot,2026-05-07,round,20,2,0.2,0.30,2,med,techcrunch.com/2026/05/07 (ARR >0.2 Apr)
+Moonshot,Moonshot,2026-07-29,round,35,3.5,0.3,0.30,5,med,bloomberg.com/news/articles/2026-07-29
+Moonshot,Moonshot,2026-10-06,final private round,50,0,1.0,0.30,5,med,Bloomberg via theedgemalaysia.com/node/820677

@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper."
+title: "Valuing Anthropic and OpenAI Under Model Distillation: The Lead over Open-Weight Models Implied by AI Lab Valuations, 2024-2026"
+type: software
+authors:
+  - family-names: Krasnov
+    given-names: Danila
+    affiliation: "European University at St. Petersburg"
+    email: d.krasnov@eu.spb.ru
+date-released: 2026-10-22
+repository-code: "https://github.com/veshidar-dot/anthropic-openai-valuation-distillation"
+license: MIT
+keywords:
+  - Anthropic valuation
+  - OpenAI valuation
+  - AI IPO
+  - model distillation
+  - open-weight models
+  - Epoch Capabilities Index
+  - LLM API pricing
+  - discounted cash flow
+  - competitive advantage period
+preferred-citation:
+  type: article
+  title: "Valuing Anthropic and OpenAI Under Model Distillation: The Lead over Open-Weight Models Implied by AI Lab Valuations, 2024-2026"
+  authors:
+    - family-names: Krasnov
+      given-names: Danila
+      affiliation: "European University at St. Petersburg"
+  year: 2026
+  status: preprint
+  notes: "Working paper, version of 22 October 2026"

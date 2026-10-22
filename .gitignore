@@ -1,0 +1,10 @@
+# raw downloads stay local (OpenRouter price list is not redistributed)
+data/raw/
+notes.md
+__pycache__/
+*.pyc
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz
