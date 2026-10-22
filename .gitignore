@@ -1,6 +1,7 @@
 # raw downloads stay local (OpenRouter price list is not redistributed)
 data/raw/
 notes.md
+submission/
 __pycache__/
 *.pyc
 paper/*.aux
