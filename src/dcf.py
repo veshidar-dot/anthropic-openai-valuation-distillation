@@ -21,7 +21,7 @@ from dataclasses import dataclass, replace
 
 EXP_GAMMA = 0.38            # e^γ, бутстрэп [0.22; 0.61]
 LAM = 6.9                   # мес, бутстрэп [5.2; 11.0]
-EPS = 0.5
+EPS = 1.1                   # эластичность спроса; Demirer et al. — чуть выше 1 (было 0.5 до рецензии)
 GM_CAP = 0.85
 TG = 0.03
 TAX = 0.21

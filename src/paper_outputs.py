@@ -240,9 +240,10 @@ def anchored_one(firm, d, wacc, gm_ref):
 
 
 def tab_anchored():
-    """Две панели: эластичность спроса 0,5 (база) и 1,1 (Demirer et al.)."""
+    """Две панели: эластичность спроса 1,1 (база, Demirer et al.) и 0,5."""
     lines = []
-    for eps in (0.5, 1.1):
+    eps0 = dcf.EPS
+    for eps in (1.1, 0.5):
         dcf.EPS = eps
         lines.append(f"\\multicolumn{{8}}{{l}}{{\\textit{{Price elasticity of demand {eps}}}}} \\\\")
         for wacc, gm, cap in [(0.12, 0.75, 0.85), (0.10, 0.75, 0.85), (0.12, 0.85, 0.92), (0.10, 0.85, 0.92)]:
@@ -252,9 +253,9 @@ def tab_anchored():
                 v0, L, el = anchored_one(firm, d, wacc, gm)
                 cells += [f"{v0 / 1000:.2f}", "unattainable" if L is None else f"{L:.1f}", f"{el * 100:.0f}"]
             lines.append(f"{wacc * 100:.0f}\\% & {gm * 100:.0f}\\% & " + " & ".join(cells) + " \\\\")
-        if eps == 0.5:
+        if eps == 1.1:
             lines.append("\\addlinespace")
-    dcf.GM_CAP, dcf.EPS = 0.85, 0.5
+    dcf.GM_CAP, dcf.EPS = 0.85, eps0
     tex_table(TAB / "anchored.tex", "\n".join(lines) + "\n")
 
 
